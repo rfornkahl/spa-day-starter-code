@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 
 @Controller
+
+
 public class SpaDayController {
 
     public boolean checkSkinType(String skinType, String facialType) {
@@ -47,6 +49,8 @@ public class SpaDayController {
         return html;
     }
 
+
+
     @PostMapping(value="")
     public String spaMenu(@RequestParam String name, @RequestParam String skintype, @RequestParam String manipedi, Model model) {
 
@@ -62,6 +66,12 @@ public class SpaDayController {
                 appropriateFacials.add(facials.get(i));
             }
         }
+
+        //required to transfer name, skintype, manipedi, and facial entries to menu template
+        model.addAttribute("name", name);
+        model.addAttribute("skintype", skintype);
+        model.addAttribute("manipedi", manipedi);
+        model.addAttribute("appropriateFacials", appropriateFacials);
 
         return "menu";
     }
